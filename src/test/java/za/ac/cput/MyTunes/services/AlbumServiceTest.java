@@ -36,7 +36,7 @@ public class AlbumServiceTest extends AbstractTestNGSpringContextTests {
     @Test(dependsOnMethods = "create")
     public void testGetProduct() throws Exception {
         Album album = service.findById(id);
-        Assert.assertEquals(album.getName(), "Note 5");
+        Assert.assertEquals(album.getName(), "Helios");
     }
 
     @Test(dependsOnMethods = "testGetProduct")
@@ -51,7 +51,7 @@ public class AlbumServiceTest extends AbstractTestNGSpringContextTests {
         Album updatedAlbum = new Album.Builder(album.getName()).copy(album).build();
         service.edit(updatedAlbum);
         Album newAlbum = repository.findOne(id);
-        Assert.assertEquals(newAlbum.getDescription(), "Cool");
+        Assert.assertEquals(newAlbum.getDescription(), "Cool Indie Rock Album");
     }
 
     @Test(dependsOnMethods = "testEditProduct")

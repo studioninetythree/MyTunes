@@ -22,7 +22,7 @@ public class OrderAlbumCrudTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testCreate() throws Exception {
         repository.deleteAll();
-        OrderAlbum orderAlbum = OrderProductFactory.createOrderAlbum(20);
+        OrderAlbum orderAlbum = OrderProductFactory.createOrderAlbum(23);
         repository.save(orderAlbum);
         id = orderAlbum.getId();
         Assert.assertNotNull(orderAlbum.getId());
@@ -31,16 +31,16 @@ public class OrderAlbumCrudTest extends AbstractTestNGSpringContextTests {
     @Test(dependsOnMethods = "testCreate")
     public void testRead() throws Exception {
         OrderAlbum orderAlbum = repository.findOne(id);
-        Assert.assertEquals(orderAlbum.getQuantity(), 20);
+        Assert.assertEquals(orderAlbum.getQuantity(), 23);
     }
 
     @Test(dependsOnMethods = "testRead")
     public void testUpdate() throws Exception {
         OrderAlbum orderAlbum = repository.findOne(id);
-        OrderAlbum newOrderAlbum = new OrderAlbum.Builder(orderAlbum.getQuantity()).copy(orderAlbum).quantity(15).build();
+        OrderAlbum newOrderAlbum = new OrderAlbum.Builder(orderAlbum.getQuantity()).copy(orderAlbum).quantity(10).build();
         repository.save(newOrderAlbum);
         OrderAlbum updatedOrderAlbum = repository.findOne(id);
-        Assert.assertEquals(updatedOrderAlbum.getQuantity(), 15);
+        Assert.assertEquals(updatedOrderAlbum.getQuantity(), 10);
     }
 
     @Test(dependsOnMethods = "testUpdate")

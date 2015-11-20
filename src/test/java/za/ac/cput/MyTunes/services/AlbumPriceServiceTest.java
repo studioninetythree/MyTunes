@@ -27,7 +27,7 @@ public class AlbumPriceServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void create() throws Exception {
         repository.deleteAll();
-        AlbumPrice albumPrice = ProductPriceFactory.createProductPrice("2015-09-23", new BigDecimal(11000));
+        AlbumPrice albumPrice = ProductPriceFactory.createProductPrice("2015-09-25", new BigDecimal(195));
         service.create(albumPrice);
         id = albumPrice.getId();
         Assert.assertNotNull(albumPrice);
@@ -36,7 +36,7 @@ public class AlbumPriceServiceTest extends AbstractTestNGSpringContextTests {
     @Test(dependsOnMethods = "create")
     public void testGetProductPrice() throws Exception {
         AlbumPrice albumPrice = service.findById(id);
-        Assert.assertEquals(albumPrice.getDateFrom(), "2015-09-23");
+        Assert.assertEquals(albumPrice.getDateFrom(), "2015-09-25");
     }
 
     @Test(dependsOnMethods = "testGetProductPrice")
@@ -48,10 +48,10 @@ public class AlbumPriceServiceTest extends AbstractTestNGSpringContextTests {
     @Test(dependsOnMethods = "testGetProductPrices")
     public void testEditProductPrice() throws Exception {
         AlbumPrice albumPrice = repository.findOne(id);
-        AlbumPrice updatedAlbumPrice = new AlbumPrice.Builder(albumPrice.getProductPrice()).copy(albumPrice).dateFrom("2015-09-25").build();
+        AlbumPrice updatedAlbumPrice = new AlbumPrice.Builder(albumPrice.getProductPrice()).copy(albumPrice).dateFrom("2015-10-25").build();
         service.edit(updatedAlbumPrice);
         AlbumPrice newAlbumPrice = repository.findOne(id);
-        Assert.assertEquals(newAlbumPrice.getDateFrom(), "2015-09-25");
+        Assert.assertEquals(newAlbumPrice.getDateFrom(), "2015-10-25");
     }
 
     @Test(dependsOnMethods = "testEditProductPrice")

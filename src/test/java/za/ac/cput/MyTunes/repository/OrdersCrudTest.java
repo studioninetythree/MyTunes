@@ -24,7 +24,7 @@ public class OrdersCrudTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testCreate() throws Exception {
         repository.deleteAll();
-        Orders order = OrdersFactory.createOrders("Confirmed", "2015-10-10", "2015-10-10", new BigDecimal(200), null);
+        Orders order = OrdersFactory.createOrders("Confirmed", "2015-112-24", "2015-12-24", new BigDecimal(149), null);
         repository.save(order);
         id = order.getId();
         Assert.assertNotNull(order.getId());
@@ -39,10 +39,10 @@ public class OrdersCrudTest extends AbstractTestNGSpringContextTests {
     @Test(dependsOnMethods = "testRead")
     public void testUpdate() throws Exception {
         Orders order = repository.findOne(id);
-        Orders newOrder = new Orders.Builder(order.getOrderStatus()).copy(order).dateOrderPaid("2015-10-15").build();
+        Orders newOrder = new Orders.Builder(order.getOrderStatus()).copy(order).dateOrderPaid("2015-12-26").build();
         repository.save(newOrder);
         Orders updatedOrder = repository.findOne(id);
-        Assert.assertEquals(updatedOrder.getDateOrderPaid(), "2015-10-15");
+        Assert.assertEquals(updatedOrder.getDateOrderPaid(), "2015-12-26");
     }
 
     @Test(dependsOnMethods = "testUpdate")

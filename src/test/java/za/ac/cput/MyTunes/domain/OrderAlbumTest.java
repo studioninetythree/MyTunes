@@ -8,15 +8,15 @@ public class OrderAlbumTest {
 
     @Test
     public void testCreate() {
-        OrderAlbum orderAlbum = OrderProductFactory.createOrderAlbum(20);
-        Assert.assertEquals(orderAlbum.getQuantity(), 20);
+        OrderAlbum orderAlbum = OrderProductFactory.createOrderAlbum(22);
+        Assert.assertEquals(orderAlbum.getQuantity(), 22);
     }
 
     @Test
     public void testUpdate() {
-        OrderAlbum orderAlbum = OrderProductFactory.createOrderAlbum(20);
-        OrderAlbum orderAlbumCopy = new OrderAlbum.Builder(15).build();
-        Assert.assertEquals(orderAlbumCopy.getQuantity(), 15);
+        OrderAlbum orderAlbum = OrderProductFactory.createOrderAlbum(56);
+        OrderAlbum orderAlbumCopy = new OrderAlbum.Builder(2).build();
+        Assert.assertEquals(orderAlbumCopy.getQuantity(), 2);
     }
 
 }

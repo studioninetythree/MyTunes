@@ -33,7 +33,7 @@ public class OrdersServiceTest extends AbstractTestNGSpringContextTests {
         OrderAlbum orderAlbum = OrderProductFactory.createOrderAlbum(20);
         List<OrderAlbum> orderAlbumList = new ArrayList<OrderAlbum>();
         orderAlbumList.add(orderAlbum);
-        Orders order = OrdersFactory.createOrders("Confirmed", "2015-10-10", "2015-10-10", new BigDecimal(200), orderAlbumList);
+        Orders order = OrdersFactory.createOrders("Confirmed", "2015-11-26", "2015-11-26", new BigDecimal(165), orderAlbumList);
         service.create(order);
         id = order.getId();
         Assert.assertNotNull(order);
@@ -60,10 +60,10 @@ public class OrdersServiceTest extends AbstractTestNGSpringContextTests {
     @Test(dependsOnMethods = "testGetOrders")
     public void testEditOrder() throws Exception {
         Orders order = repository.findOne(id);
-        Orders updatedOrder = new Orders.Builder(order.getOrderStatus()).copy(order).dateOrderPaid("2015-10-15").build();
+        Orders updatedOrder = new Orders.Builder(order.getOrderStatus()).copy(order).dateOrderPaid("2015-11-28").build();
         service.edit(updatedOrder);
         Orders newOrder = repository.findOne(id);
-        Assert.assertEquals(newOrder.getDateOrderPaid(), "2015-10-15");
+        Assert.assertEquals(newOrder.getDateOrderPaid(), "2015-11-28");
     }
 
     @Test(dependsOnMethods = "testEditOrder")

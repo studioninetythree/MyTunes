@@ -11,15 +11,15 @@ public class AlbumTest {
     @Test
     public void testCreate() {
         Album album = AlbumFactory.createAlbum("Helios", "The Fray", new BigDecimal(299), "Cool Indie Rock Album", null, null);
-        Assert.assertEquals(album.getName(), "Note 5");
-        Assert.assertEquals(album.getArtist(), "Samsung");
+        Assert.assertEquals(album.getName(), "Helios");
+        Assert.assertEquals(album.getArtist(), "The Fray");
     }
 
     @Test
     public void testUpdate() {
         Album album = AlbumFactory.createAlbum("Helios", "The Fray", new BigDecimal(299), "Cool Indie Rock Album", null, null);
         Album albumCopy = new Album.Builder(album.getName()).copy(album).build();
-        Assert.assertEquals(albumCopy.getName(), "Note 5");
+        Assert.assertEquals(albumCopy.getName(), "Helios");
     }
 
 }

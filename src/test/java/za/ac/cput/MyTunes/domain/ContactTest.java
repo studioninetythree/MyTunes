@@ -8,17 +8,17 @@ public class ContactTest {
 
     @Test
     public void testCreate() {
-        Contact contact = ContactFactory.createContact("0123936357", "0821239876");
-        Assert.assertEquals(contact.getHomePhoneNumber(), "0123936357");
-        Assert.assertEquals(contact.getMobilePhoneNumber(), "0821239876");
+        Contact contact = ContactFactory.createContact("0215600032", "0112366999");
+        Assert.assertEquals(contact.getHomePhoneNumber(), "0215600032");
+        Assert.assertEquals(contact.getMobilePhoneNumber(), "0112366999");
     }
 
     @Test
     public void testUpdate() {
-        Contact contact = ContactFactory.createContact("0123936357", "0821239876");
-        Contact contactCopy = new Contact.Builder(contact.getMobilePhoneNumber()).copy(contact).homePhoneNumber("0215674321").build();
-        Assert.assertEquals(contactCopy.getHomePhoneNumber(), "0215674321");
-        Assert.assertEquals(contactCopy.getMobilePhoneNumber(), "0821239876");
+        Contact contact = ContactFactory.createContact("0256325982", "5698523102");
+        Contact contactCopy = new Contact.Builder(contact.getMobilePhoneNumber()).copy(contact).homePhoneNumber("0213300000").build();
+        Assert.assertEquals(contactCopy.getHomePhoneNumber(), "0213300000");
+        Assert.assertEquals(contactCopy.getMobilePhoneNumber(), "5698523102");
     }
 
 }

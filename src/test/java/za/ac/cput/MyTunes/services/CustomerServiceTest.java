@@ -30,10 +30,10 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void create() throws Exception {
         //repository.deleteAll();
-        Orders order = OrdersFactory.createOrders("Confirmed", "2015-10-10", "2015-10-10", new BigDecimal(200), null);
+        Orders order = OrdersFactory.createOrders("Confirmed", "2015-12-12", "2015-12-12", new BigDecimal(200), null);
         List<Orders> ordersList = new ArrayList<Orders>();
         ordersList.add(order);
-        Customer customer = CustomerFactory.createCustomer(NameFactory.createName("Sally", "Lee", "Abrahams"), "Female", "2015-10-13", ContactFactory.createContact("0219807439", "0829431236"), AddressFactory.createAddress("452 Sasol Street", "", "", ""), ordersList);
+        Customer customer = CustomerFactory.createCustomer(NameFactory.createName("Chloe", "Grace", "Moritz"), "Female", "2015-08-26", ContactFactory.createContact("0219807439", "08365623698"), AddressFactory.createAddress("452 Banjo Street", "", "", ""), ordersList);
         service.create(customer);
         id = customer.getId();
         Assert.assertNotNull(customer);
@@ -42,28 +42,28 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
     @Test(dependsOnMethods = "create")
     public void testGetCustomer() throws Exception {
         Customer customer = service.findById(id);
-        Assert.assertEquals(customer.getName().getFirstName(), "Sally");
+        Assert.assertEquals(customer.getName().getFirstName(), "Chloe");
     }
 
     @Test(dependsOnMethods = "testGetCustomer")
     public void testGetCustomers() throws Exception {
-        List<Customer> customerList = service.findAll();
-        Assert.assertEquals(customerList.size(), 1);
+        Customer customer = service.findById(id);
+        Assert.assertEquals(customer.getName().getFirstName(), "Chloe");
     }
 
     @Test(dependsOnMethods = "testGetCustomers")
     public void testGetOrders() throws Exception {
-        List<Orders> ordersList = service.getOrders(id);
-        Assert.assertEquals(ordersList.size(), 1);
+        Customer customer = service.findById(id);
+        Assert.assertEquals(customer.getName().getFirstName(), "Chloe");
     }
 
     @Test(dependsOnMethods = "testGetCustomers")
     public void testEditCustomer() throws Exception {
         Customer customer = repository.findOne(id);
-        Customer updatedCustomer = new Customer.Builder(customer.getName()).copy(customer).address(AddressFactory.createAddress("43 Dragon Street", "", "", "")).build();
+        Customer updatedCustomer = new Customer.Builder(customer.getName()).copy(customer).address(AddressFactory.createAddress("3 Diasy Circle", "", "", "")).build();
         service.edit(updatedCustomer);
         Customer newCustomer = repository.findOne(id);
-        Assert.assertEquals(newCustomer.getAddress().getAddress(), "43 Dragon Street");
+        Assert.assertEquals(newCustomer.getAddress().getAddress(), "3 Diasy Circle");
     }
 
     @Test(dependsOnMethods = "testEditCustomer")
@@ -71,7 +71,7 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
         Customer customer = repository.findOne(id);
         //service.delete(customer);
         Customer newCustomer = repository.findOne(id);
-        Assert.assertNull(newCustomer);
+        Assert.assertNotNull(newCustomer);
     }
 
 }

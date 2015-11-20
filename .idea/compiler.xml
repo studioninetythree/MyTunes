@@ -27,7 +27,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="MobilePhones" target="1.7" />
+      <module name="MyTunes" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

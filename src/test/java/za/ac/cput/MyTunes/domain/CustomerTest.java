@@ -11,17 +11,17 @@ public class CustomerTest {
 
     @Test
     public void testCreate() {
-        Customer customer = CustomerFactory.createCustomer(NameFactory.createName("Sally", "Lee", "Abrahams"), "Female", "2015-10-13", ContactFactory.createContact("0219807439", "0829431236"), AddressFactory.createAddress("452 Sasol Street", "", "", ""), null);
-        Assert.assertEquals(customer.getName().getFirstName(), "Sally");
-        Assert.assertEquals(customer.getContact().getHomePhoneNumber(), "0219807439");
+        Customer customer = CustomerFactory.createCustomer(NameFactory.createName("Nadine", "Chleo", "Smith"), "Female", "2015-10-28", ContactFactory.createContact("0215632526", "0841111111"), AddressFactory.createAddress("452 Sasol Street", "", "", ""), null);
+        Assert.assertEquals(customer.getName().getFirstName(), "Nadine");
+        Assert.assertEquals(customer.getContact().getHomePhoneNumber(), "0215632526");
     }
 
     @Test
     public void testUpdate() {
-        Customer customer = CustomerFactory.createCustomer(NameFactory.createName("Sally", "Lee", "Abrahams"), "Female", "2015-10-13", ContactFactory.createContact("0219807439", "0829431236"), AddressFactory.createAddress("452 Sasol Street", "", "", ""), null);
-        Customer customerCopy = new Customer.Builder(customer.getName()).copy(customer).address(AddressFactory.createAddress("43 Dragon Street", "", "", "")).build();
-        Assert.assertEquals(customer.getName().getFirstName(), "Sally");
-        Assert.assertEquals(customerCopy.getAddress().getAddress(), "43 Dragon Street");
+        Customer customer = CustomerFactory.createCustomer(NameFactory.createName("Nadine", "Chleo", "Smith"), "Female", "2015-10-28", ContactFactory.createContact("0215632526", "0841111111"), AddressFactory.createAddress("452 Sasol Street", "", "", ""), null);
+        Customer customerCopy = new Customer.Builder(customer.getName()).copy(customer).address(AddressFactory.createAddress("60 Black Street", "", "", "")).build();
+        Assert.assertEquals(customer.getName().getFirstName(), "Nadine");
+        Assert.assertEquals(customerCopy.getAddress().getAddress(), "60 Black Street");
     }
 
 }

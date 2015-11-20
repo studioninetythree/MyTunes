@@ -25,7 +25,7 @@ public class CustomerCrudTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testCreate() throws Exception {
         repository.deleteAll();
-        Customer customer = CustomerFactory.createCustomer(NameFactory.createName("Sally", "Lee", "Abrahams"), "Female", "2015-10-13", ContactFactory.createContact("0219807439", "0829431236"), AddressFactory.createAddress("452 Sasol Street", "", "", ""), null);
+        Customer customer = CustomerFactory.createCustomer(NameFactory.createName("Mark", "Denver", "Jones"), "Male", "2015-01-04", ContactFactory.createContact("0112003658", "0822255693"), AddressFactory.createAddress("10 Freedom Road", "", "", ""), null);
         repository.save(customer);
         id = customer.getId();
         Assert.assertNotNull(customer.getId());
@@ -34,16 +34,16 @@ public class CustomerCrudTest extends AbstractTestNGSpringContextTests {
     @Test(dependsOnMethods = "testCreate")
     public void testRead() throws Exception {
         Customer customer = repository.findOne(id);
-        Assert.assertEquals(customer.getName().getFirstName(), "Sally");
+        Assert.assertEquals(customer.getName().getFirstName(), "Mark");
     }
 
     @Test(dependsOnMethods = "testRead")
     public void testUpdate() throws Exception {
         Customer customer = repository.findOne(id);
-        Customer newCustomer = new Customer.Builder(customer.getName()).copy(customer).address(AddressFactory.createAddress("43 Dragon Street", "", "", "")).build();
+        Customer newCustomer = new Customer.Builder(customer.getName()).copy(customer).address(AddressFactory.createAddress("4 Loop Street", "", "", "")).build();
         repository.save(newCustomer);
         Customer updatedCustomer = repository.findOne(id);
-        Assert.assertEquals(updatedCustomer.getAddress().getAddress(), "43 Dragon Street");
+        Assert.assertEquals(updatedCustomer.getAddress().getAddress(), "4 Loop Street");
     }
 
     @Test(dependsOnMethods = "testUpdate")
