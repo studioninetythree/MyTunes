@@ -10,7 +10,7 @@ import org.junit.runners.Suite;
         CustomerTest.class,
         NameTest.class,
         OrderAlbumTest.class,
-        OrdersTest.class,
+        OrderTest.class,
         AlbumPriceTest.class,
         AlbumTest.class
 })

@@ -7,14 +7,14 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import za.ac.cput.MyTunes.App;
+import za.ac.cput.MyTunes.domain.Order;
 import za.ac.cput.MyTunes.factories.OrdersFactory;
-import za.ac.cput.MyTunes.domain.Orders;
 
 import java.math.BigDecimal;
 
 @SpringApplicationConfiguration(classes= App.class)
 @WebAppConfiguration
-public class OrdersCrudTest extends AbstractTestNGSpringContextTests {
+public class OrderCrudTest extends AbstractTestNGSpringContextTests {
 
     private Long id;
 
@@ -24,7 +24,7 @@ public class OrdersCrudTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testCreate() throws Exception {
         repository.deleteAll();
-        Orders order = OrdersFactory.createOrders("Confirmed", "2015-112-24", "2015-12-24", new BigDecimal(149), null);
+        Order order = OrdersFactory.createOrders("Confirmed", "2015-112-24", "2015-12-24", new BigDecimal(149), null);
         repository.save(order);
         id = order.getId();
         Assert.assertNotNull(order.getId());
@@ -32,24 +32,24 @@ public class OrdersCrudTest extends AbstractTestNGSpringContextTests {
 
     @Test(dependsOnMethods = "testCreate")
     public void testRead() throws Exception {
-        Orders order = repository.findOne(id);
+        Order order = repository.findOne(id);
         Assert.assertEquals(order.getOrderStatus(), "Confirmed");
     }
 
     @Test(dependsOnMethods = "testRead")
     public void testUpdate() throws Exception {
-        Orders order = repository.findOne(id);
-        Orders newOrder = new Orders.Builder(order.getOrderStatus()).copy(order).dateOrderPaid("2015-12-26").build();
+        Order order = repository.findOne(id);
+        Order newOrder = new Order.Builder(order.getOrderStatus()).copy(order).dateOrderPaid("2015-12-26").build();
         repository.save(newOrder);
-        Orders updatedOrder = repository.findOne(id);
+        Order updatedOrder = repository.findOne(id);
         Assert.assertEquals(updatedOrder.getDateOrderPaid(), "2015-12-26");
     }
 
     @Test(dependsOnMethods = "testUpdate")
     public void testDelete() throws Exception {
-        Orders order = repository.findOne(id);
+        Order order = repository.findOne(id);
         repository.delete(order);
-        Orders newOrder = repository.findOne(id);
+        Order newOrder = repository.findOne(id);
         Assert.assertNull(newOrder);
     }
 

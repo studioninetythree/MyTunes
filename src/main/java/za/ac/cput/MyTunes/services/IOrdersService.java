@@ -1,11 +1,11 @@
 package za.ac.cput.MyTunes.services;
 
+import za.ac.cput.MyTunes.domain.Order;
 import za.ac.cput.MyTunes.domain.OrderAlbum;
-import za.ac.cput.MyTunes.domain.Orders;
 
 import java.util.List;
 
-public interface IOrdersService extends IServices<Orders, Long> {
+public interface IOrdersService extends IServices<Order, Long> {
 
     List<OrderAlbum> getOrderProducts(Long id);
 

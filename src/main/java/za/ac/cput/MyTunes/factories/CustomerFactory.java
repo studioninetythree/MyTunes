@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CustomerFactory {
 
-    public static Customer createCustomer(Name name, String sex, String dateOfBirth, Contact contact, Address address, List<Orders>orderList) {
+    public static Customer createCustomer(Name name, String sex, String dateOfBirth, Contact contact, Address address, List<Order>orderList) {
         return new Customer.Builder(name).sex(sex).dateOfBirth(dateOfBirth).contact(contact).address(address).orderList(orderList).build();
     }
 

@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import za.ac.cput.MyTunes.domain.Customer;
-import za.ac.cput.MyTunes.domain.Orders;
+import za.ac.cput.MyTunes.domain.Order;
 import za.ac.cput.MyTunes.services.ICustomerService;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class CustomerPage {
     private ICustomerService service;
 
     @RequestMapping(value="/orders/{id}", method= RequestMethod.GET)
-    public List<Orders> getOrders(@PathVariable Long id) {
+    public List<Order> getOrders(@PathVariable Long id) {
         return service.getOrders(id);
     }
 

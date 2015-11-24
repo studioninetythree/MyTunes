@@ -7,10 +7,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import za.ac.cput.MyTunes.App;
+import za.ac.cput.MyTunes.domain.Order;
 import za.ac.cput.MyTunes.factories.*;
 import za.ac.cput.MyTunes.domain.Customer;
-import za.ac.cput.MyTunes.domain.Orders;
-import za.ac.cput.MyTunes.factories.*;
 import za.ac.cput.MyTunes.repository.CustomerRepository;
 
 import java.math.BigDecimal;
@@ -30,10 +29,10 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void create() throws Exception {
         //repository.deleteAll();
-        Orders order = OrdersFactory.createOrders("Confirmed", "2015-12-12", "2015-12-12", new BigDecimal(200), null);
-        List<Orders> ordersList = new ArrayList<Orders>();
-        ordersList.add(order);
-        Customer customer = CustomerFactory.createCustomer(NameFactory.createName("Chloe", "Grace", "Moritz"), "Female", "2015-08-26", ContactFactory.createContact("0219807439", "08365623698"), AddressFactory.createAddress("452 Banjo Street", "", "", ""), ordersList);
+        Order order = OrdersFactory.createOrders("Confirmed", "2015-12-12", "2015-12-12", new BigDecimal(200), null);
+        List<Order> orderList = new ArrayList<Order>();
+        orderList.add(order);
+        Customer customer = CustomerFactory.createCustomer(NameFactory.createName("Chloe", "Grace", "Moritz"), "Female", "2015-08-26", ContactFactory.createContact("0219807439", "08365623698"), AddressFactory.createAddress("452 Banjo Street", "", "", ""), orderList);
         service.create(customer);
         id = customer.getId();
         Assert.assertNotNull(customer);

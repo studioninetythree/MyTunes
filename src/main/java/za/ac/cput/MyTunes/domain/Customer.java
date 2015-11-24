@@ -20,7 +20,7 @@ public class Customer implements Serializable {
     private Address address;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="customer_id")
-    private List<Orders> orderList;
+    private List<Order> orderList;
 
     private Customer() {}
 
@@ -58,7 +58,7 @@ public class Customer implements Serializable {
         return address;
     }
 
-    public List<Orders> getOrderList() {
+    public List<Order> getOrderList() {
         return orderList;
     }
 
@@ -70,7 +70,7 @@ public class Customer implements Serializable {
         private String dateOfBirth;
         private Contact contact;
         private Address address;
-        private List<Orders> orderList;
+        private List<Order> orderList;
 
         public Builder(Name name) {
             this.name = name;
@@ -106,7 +106,7 @@ public class Customer implements Serializable {
             return this;
         }
 
-        public Builder orderList(List<Orders> orderList) {
+        public Builder orderList(List<Order> orderList) {
             this.orderList = orderList;
             return this;
         }

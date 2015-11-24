@@ -30,10 +30,10 @@ public class ProductPricePage {
 
     @RequestMapping(value = "/product-prices/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AlbumPrice> getProductPrice(@PathVariable("id") long id) {
-        System.out.println("Fetching AlbumPrice with id " + id);
+        System.out.println("Fetching AlbumPriceResource with id " + id);
         AlbumPrice albumPrice = service.findById(id);
         if (albumPrice == null) {
-            System.out.println("AlbumPrice with id " + id + " not found");
+            System.out.println("AlbumPriceResource with id " + id + " not found");
             return new ResponseEntity<AlbumPrice>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<AlbumPrice>(albumPrice, HttpStatus.OK);
@@ -41,7 +41,7 @@ public class ProductPricePage {
 
     @RequestMapping(value = "/product-prices/create", method = RequestMethod.POST)
     public ResponseEntity<Void> createProductPrice(@RequestBody AlbumPrice albumPrice, UriComponentsBuilder ucBuilder) {
-        System.out.println("Creating AlbumPrice " + albumPrice.getId());
+        System.out.println("Creating AlbumPriceResource " + albumPrice.getId());
 
         service.create(albumPrice);
 
@@ -52,12 +52,12 @@ public class ProductPricePage {
 
     @RequestMapping(value = "/product-prices/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<AlbumPrice> updateProductPrice(@PathVariable("id") long id, @RequestBody AlbumPrice albumPrice) {
-        System.out.println("Updating AlbumPrice " + id);
+        System.out.println("Updating AlbumPriceResource " + id);
 
         AlbumPrice currentAlbumPrice = service.findById(id);
 
         if (currentAlbumPrice ==null) {
-            System.out.println("AlbumPrice with id " + id + " not found");
+            System.out.println("AlbumPriceResource with id " + id + " not found");
             return new ResponseEntity<AlbumPrice>(HttpStatus.NOT_FOUND);
         }
 
@@ -73,11 +73,11 @@ public class ProductPricePage {
 
     @RequestMapping(value = "/product-prices/delete/{id}", method = RequestMethod.PUT)
     public ResponseEntity<AlbumPrice> deleteProductPrice(@PathVariable("id") long id, @RequestBody AlbumPrice propri) {
-        System.out.println("Fetching & Deleting AlbumPrice with id " + id);
+        System.out.println("Fetching & Deleting AlbumPriceResource with id " + id);
 
         AlbumPrice albumPrice = service.findById(id);
         if (albumPrice == null) {
-            System.out.println("Unable to delete. AlbumPrice with id " + id + " not found");
+            System.out.println("Unable to delete. AlbumPriceResource with id " + id + " not found");
             return new ResponseEntity<AlbumPrice>(HttpStatus.NOT_FOUND);
         }
 

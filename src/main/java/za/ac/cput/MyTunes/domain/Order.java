@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-public class Orders implements Serializable{
+public class Order implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,9 +19,9 @@ public class Orders implements Serializable{
     @JoinColumn(name="order_id")
     private List<OrderAlbum> orderAlbumList;
 
-    private Orders(){}
+    private Order(){}
 
-    public Orders(Builder builder) {
+    public Order(Builder builder) {
         this.id = builder.id;
         this.orderStatus = builder.orderStatus;
         this.dateOrderPlaced = builder.dateOrderPlaced;
@@ -97,7 +97,7 @@ public class Orders implements Serializable{
             return this;
         }
 
-        public Builder copy(Orders order) {
+        public Builder copy(Order order) {
             this.id = order.id;
             this.orderStatus = order.orderStatus;
             this.dateOrderPlaced = order.dateOrderPlaced;
@@ -107,8 +107,8 @@ public class Orders implements Serializable{
             return this;
         }
 
-        public Orders build() {
-            return new Orders(this);
+        public Order build() {
+            return new Order(this);
         }
 
     }
@@ -120,7 +120,7 @@ public class Orders implements Serializable{
 
     @Override
     public String toString() {
-        return "Orders{" +
+        return "Order{" +
                 "id=" + id +
                 ", orderStatus='" + orderStatus + '\'' +
                 ", dateOrderPlaced='" + dateOrderPlaced + '\'' +
