@@ -23,9 +23,17 @@ public class AlbumPage {
     public ResponseEntity<List<Album>> listAllProducts() {
         List<Album> albumList = service.findAll();
         if(albumList.isEmpty()){
+            notFound();//
             return new ResponseEntity<List<Album>>(HttpStatus.NOT_FOUND);//You many decide to return HttpStatus.NOT_FOUND
+
         }
         return new ResponseEntity<List<Album>>(albumList, HttpStatus.OK);
+    }
+
+    public String  notFound()
+    {
+        return "No albums found.";
+
     }
 
     @RequestMapping(value = "/album/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
